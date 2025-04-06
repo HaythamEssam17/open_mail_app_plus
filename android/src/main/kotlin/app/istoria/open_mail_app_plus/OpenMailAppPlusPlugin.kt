@@ -13,7 +13,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-//import io.flutter.plugin.common.PluginRegistry.Registrar
 
 class OpenMailAppPlusPlugin : FlutterPlugin, MethodCallHandler {
   private lateinit var channel: MethodChannel
@@ -36,15 +35,6 @@ class OpenMailAppPlusPlugin : FlutterPlugin, MethodCallHandler {
   // them functionally equivalent. Only one of onAttachedToEngine or registerWith will be called
   // depending on the user's project. onAttachedToEngine or registerWith must both be defined
   // in the same class.
-//  companion object {
-//    @JvmStatic
-//    fun registerWith(registrar: Registrar) {
-//      val channel = MethodChannel(registrar.messenger(), "open_mail_app_plus")
-//      val plugin = OpenMailAppPlusPlugin()
-//      channel.setMethodCallHandler(plugin)
-//      plugin.init(registrar.context())
-//    }
-//  }
 
   fun init(context: Context) {
     applicationContext = context
@@ -71,10 +61,6 @@ class OpenMailAppPlusPlugin : FlutterPlugin, MethodCallHandler {
       result.notImplemented()
     }
   }
-
-//  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-//    channel.setMethodCallHandler(null)
-//  }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
