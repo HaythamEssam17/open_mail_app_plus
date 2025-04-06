@@ -2,7 +2,7 @@ group = "app.istoria.open_mail_app_plus"
 version = "1.0-SNAPSHOT"
 
 buildscript {
-    ext.kotlin_version = "1.8.22"
+    val kotlin_version by extra("1.8.22")
     repositories {
         google()
         mavenCentral()
@@ -21,8 +21,10 @@ allprojects {
     }
 }
 
-apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
 
 android {
     namespace = "app.istoria.open_mail_app_plus"
@@ -35,33 +37,34 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     sourceSets {
-        main.java.srcDirs += "src/main/kotlin"
-        test.java.srcDirs += "src/test/kotlin"
+        getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("test").java.srcDirs("src/test/kotlin")
     }
 
     defaultConfig {
         minSdk = 21
+        targetSdk = 34
     }
 
     dependencies {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
-        implementation 'com.google.code.gson:gson:2.8.5'
+        implementation("com.google.code.gson:gson:2.8.5")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.10.0") // أو آخر نسخة
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     }
 
-    testOptions {
-        unitTests.all {
-            useJUnitPlatform()
+    tasks.withType<Test> {
+        useJUnitPlatform()
 
-            testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
-               showStandardStreams = true
-            }
+        testLogging {
+            events("passed", "skipped", "failed", "standardOut", "standardError")
+            outputs.upToDateWhen { false }
+            showStandardStreams = true
         }
     }
 }
