@@ -1,0 +1,2 @@
+/Users/haitham/StudioProjects/open_mail_app_plus/example/android/app/.cxx/Debug/5y1e555l/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/haitham/StudioProjects/open_mail_app_plus/example/android/app/.cxx/Debug/5y1e555l/armeabi-v7a/CMakeFiles/rebuild_cache.dir
